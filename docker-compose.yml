@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  game_app:
+    build: .
+    depends_on:
+      - db
+  db:
+    image: mongo:latest
+    volumes:
+      - persisted
+volumes:
+  persisted:

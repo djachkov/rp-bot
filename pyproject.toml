@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "rp-bot"
+version = "0.0.1"
+description = "Telegram roleplay bot"
+authors = ["Dmitrii Diachkov <djachkov.dmitrij@gmail.com>"]
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-telegram-bot = "^20.2"
+python-dotenv = "^1.0.0"
+pymongo = "^4.3.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
