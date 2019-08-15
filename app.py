@@ -73,7 +73,7 @@ def improve(update, context):
                                  text=f"{name} повысил свою {ability}\nYou have {skill_points} left")
     except KeyError:
         context.bot.send_message(chat_id=chat_id,
-                                 text=ru_does_not_exist.format(name)).
+                                 text=ru_does_not_exist.format(name))
 
 def level_up(update, context):
     chat_id = update.message.chat_id
