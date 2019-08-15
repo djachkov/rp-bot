@@ -17,7 +17,7 @@ from telegram.ext import Updater
 characters = {}
 en_does_not_exist = "{} does not exist!"
 ru_does_not_exist = "{} не существует."
-HELP = f"""Привет, {update.message.from_user.username}!
+HELP = """Привет, {}!
 Краткое описание существующих комманд:
 /start - начать диалог с ботом
 /help - получить список комманд
@@ -34,9 +34,9 @@ wisdom=5,
 charisma=5
 
 """
-def help(update, context):
-    context.bot.send_message(chat_id=update.message.chat_id, text=HELP)
 
+def help(update, context):
+    context.bot.send_message(chat_id=update.message.chat_id, text=HELP.format(update.message.from_user.username))
 
 def start(update, context):
     context.bot.send_message(chat_id=update.message.chat_id, text=START_MESSAGE)
