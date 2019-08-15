@@ -22,6 +22,7 @@ class Character:
         self.level += 1
         self.max_health = self.max_health + ((self.max_health / 100) * 5)
         self.skill_points += 1
+        self.health = self.max_health
     def improve_ability(self, ability):
         if self.skill_points > 0:
             self.abilities[ability] += 1

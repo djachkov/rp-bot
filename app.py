@@ -17,6 +17,25 @@ from telegram.ext import Updater
 characters = {}
 en_does_not_exist = "{} does not exist!"
 ru_does_not_exist = "{} не существует."
+HELP = f"""Привет, {update.message.from_user.username}!
+Краткое описание существующих комманд:
+/start - начать диалог с ботом
+/help - получить список комманд
+/character - создание персонажа
+/attack <username> атаковать персонажа
+/levelup - повысить свой уровень
+/improve <ability> - потратить очко навыков на характеристики
+Список характеристик (с начальным значением):
+strength=5,
+dexterity=5,
+constitution=5,
+intelligence=5,
+wisdom=5,
+charisma=5
+
+"""
+def help(update, context):
+    context.bot.send_message(chat_id=update.message.chat_id, text=HELP)
 
 
 def start(update, context):
@@ -143,12 +162,15 @@ if __name__ == "__main__":
     new_character = CommandHandler('character', create_character)
     attack = CommandHandler('attack', attack)
     improve = CommandHandler('improve', improve)
+    help = CommandHandler('help', help)
+
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(luck)
     dispatcher.add_handler(new_character)
     dispatcher.add_handler(levelup)
     dispatcher.add_handler(attack)
     dispatcher.add_handler(improve)
+    dispatcher.add_handler(help)
 
     inline_caps_handler = InlineQueryHandler(inline_caps)
 
