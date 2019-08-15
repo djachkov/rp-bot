@@ -142,12 +142,13 @@ if __name__ == "__main__":
     levelup = CommandHandler('levelup', level_up)
     new_character = CommandHandler('character', create_character)
     attack = CommandHandler('attack', attack)
-
+    improve = CommandHandler('improve', improve)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(luck)
     dispatcher.add_handler(new_character)
     dispatcher.add_handler(levelup)
     dispatcher.add_handler(attack)
+    dispatcher.add_handler(improve)
 
     inline_caps_handler = InlineQueryHandler(inline_caps)
 
