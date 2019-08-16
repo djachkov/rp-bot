@@ -41,16 +41,6 @@ def help(update, context):
 def start(update, context):
     context.bot.send_message(chat_id=update.message.chat_id, text=START_MESSAGE)
 
-
-# def answer(update, context):
-#     username = update.message.from_user.username
-#     if "djachkov" in username:
-#         string = f"{username} все правильно говорит"
-#     else:
-#         string = f"Тебе стоило промолчать, {username}"
-#     context.bot.send_message(chat_id=update.message.chat_id, text=string)
-
-
 def create_character(update, context):
     chat_id = update.message.chat_id
     user_id = update.message.from_user.id
@@ -65,7 +55,9 @@ def create_character(update, context):
 def attack(update, context):
     chat_id = update.message.chat_id
     name = update.message.from_user.username
-    enemy_name = update.message.text[8::]
+    user_message = update.message.text.split(' ')
+    if len(user_message) < 2:
+        update.message.reply_text("I'm sorry Dave I'm afraid I can't do that.")
     if name in characters and enemy_name in characters:
         damage = characters[name].physical_damage
         armour = characters[enemy_name].armour
