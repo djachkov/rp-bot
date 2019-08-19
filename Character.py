@@ -28,7 +28,7 @@ class Character:
         elif item in armors:
             return self._equip_armor(item)
         else:
-            return "Я не могу использовать {item}"
+            return f"Я не могу использовать {item}"
     def _equip_weapon(self, weapon):
         attack_power = weapons[weapon]
         if not self.weapon:
