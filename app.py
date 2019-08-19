@@ -58,6 +58,8 @@ def attack(update, context):
     user_message = update.message.text.split(' ')
     if len(user_message) < 2:
         update.message.reply_text("I'm sorry Dave I'm afraid I can't do that.")
+    else:
+        enemy_name = user_message[1]
     if name in characters and enemy_name in characters:
         damage = characters[name].physical_damage
         armour = characters[enemy_name].armour
@@ -66,12 +68,25 @@ def attack(update, context):
                                  text=f"{name} атакует {enemy_name} и наносит {damage} урона!\n"
                                  f"У {enemy_name} осталось {armour} брони и {health} здоровья!")
         characters[enemy_name].get_damage(damage)
+        if characters[enemy_name].health <= 0:
+            context.bot.send_message(chat_id=chat_id,
+                                     text=f"{enemy_name} бесславно погиб в бою")
+            del characters[enemy_name]
     elif name not in characters:
         context.bot.send_message(chat_id=chat_id,
                                  text=f"{name} не создан")
     elif enemy_name not in characters:
         context.bot.send_message(chat_id=chat_id,
                                  text=f"{enemy_name} не создан")
+def equip(update, context):
+    chat_id = update.message.chat_id
+    name = update.message.from_user.username
+    user_message = update.message.text.split(' ')
+    weapon = user_message[1]
+    char = characters[name]
+
+    context.bot.send_message(chat_id=chat_id,
+                             text=char.equip(weapon))
 def improve(update, context):
     chat_id = update.message.chat_id
     name = update.message.from_user.username
@@ -155,7 +170,7 @@ if __name__ == "__main__":
     attack = CommandHandler('attack', attack)
     improve = CommandHandler('improve', improve)
     help = CommandHandler('help', help)
-
+    equip = CommandHandler('equip', equip)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(luck)
     dispatcher.add_handler(new_character)
@@ -163,19 +178,9 @@ if __name__ == "__main__":
     dispatcher.add_handler(attack)
     dispatcher.add_handler(improve)
     dispatcher.add_handler(help)
+    dispatcher.add_handler(equip)
 
     inline_caps_handler = InlineQueryHandler(inline_caps)
 
     updater.start_polling()
     updater.idle()
-"""
-Traceback (most recent call last):
-  File "/Users/dmitrij.djachkov/Code/personal/personalpy/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 333, in process_update
-    handler.handle_update(update, self, check, context)
-  File "/Users/dmitrij.djachkov/Code/personal/personalpy/lib/python3.7/site-packages/telegram/ext/handler.py", line 117, in handle_update
-    return self.callback(update, context)
-  File "/Users/dmitrij.djachkov/Code/personal/roleplayHelperBot/app.py", line 49, in level_up
-    chat_id = update.message.chat_id
-AttributeError: 'NoneType' object has no attribute 'chat_id'
-
-"""

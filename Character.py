@@ -1,3 +1,5 @@
+from weapons import weapons
+from armors import armors
 class Character:
     def __init__(self, id, name):
         self.id = id
@@ -10,24 +12,47 @@ class Character:
             wisdom=5,
             charisma=5
         )
+        self.weapon = None
         self.level = 1
         self.max_health = (self.abilities['constitution'] * 10) + (self.abilities['strength'] * 3)
         self.health = self.max_health
-        self.max_armour = 5
-        self.armour = self.max_armour
+        self.max_protection = 5
+        self.armor = None
+        self.protection = self.max_protection
         self.physical_damage = self.abilities['strength']
         self.skill_points = 6
         self.alive = True
+    def equip_weapon(self, weapon):
+        attack_power = weapons[weapon]
+        if not self.weapon:
+            self.physical_damage += attack_power
+            self.weapon = weapon
+            return f'{self.name} equip {weapon}.'
+        else:
+            dropped = self.weapon
+            self.physical_damage = self.abilities['strength'] + attack_power
+            self.weapon = weapon
+            return f'{self.name} drop {dropped} and equip {weapon}.'
+    def equip_armor(self, armor):
+        protection = armors[armor]
+        self.max_protection += protection
+        self.protection = self.max_protection
+        return f'{self.name} equip {armor}.'
+
     def levelup(self):
         self.level += 1
         self.max_health = self.max_health + ((self.max_health / 100) * 5)
-        self.skill_points += 1
         self.health = self.max_health
+        self.skill_points += 1
     def improve_ability(self, ability):
         if self.skill_points > 0:
             self.abilities[ability] += 1
             self.skill_points -= 1
-            return self.abilities[ability]
+            if ability is 'strength':
+                self.physical_damage = self.abilities[ability]
+                if self.weapon:
+                    self.physical_damage += weapons[self.weapon]
+            return f"{self.abilities[ability]} increased."
         else:
             return "You cannot improve your abilities, {}.".format(self.name)
     def get_damage(self, damage):
@@ -41,8 +66,8 @@ class Character:
         else:
             self.health = self.health - damage
         if self.health <= 0:
-            self.loose()
-    def loose(self):
+            self.death()
+    def death(self):
         self.alive = False
         return (f"{self.name} is dead!")
 
