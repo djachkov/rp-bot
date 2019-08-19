@@ -40,8 +40,6 @@ def help(update, context):
 
 def start(update, context):
     context.bot.send_message(chat_id=update.message.chat_id, text=START_MESSAGE)
-
-def create_character(update, context):
     chat_id = update.message.chat_id
     user_id = update.message.from_user.id
     character_id = '/'.join([str(chat_id), str(user_id)])
@@ -169,7 +167,6 @@ if __name__ == "__main__":
     start_handler = CommandHandler('start', start)
     luck = CommandHandler('luck', luck)
     levelup = CommandHandler('levelup', level_up)
-    new_character = CommandHandler('character', create_character)
     attack = CommandHandler('attack', attack)
     improve = CommandHandler('improve', improve)
     help = CommandHandler('help', help)
@@ -177,7 +174,6 @@ if __name__ == "__main__":
     monitor = CommandHandler('monitor', monitor)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(luck)
-    dispatcher.add_handler(new_character)
     dispatcher.add_handler(levelup)
     dispatcher.add_handler(attack)
     dispatcher.add_handler(improve)
