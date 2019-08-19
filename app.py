@@ -73,7 +73,7 @@ def attack(update, context):
     else:
         enemy_name = user_message[1]
         if '@' in enemy_name:
-            enemy_name.strip('@')
+            enemy_name = enemy_name.strip('@')
     if name in characters and enemy_name in characters:
         damage = characters[name].physical_damage
         armor = characters[enemy_name].protection
