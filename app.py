@@ -60,11 +60,11 @@ def attack(update, context):
         enemy_name = user_message[1]
     if name in characters and enemy_name in characters:
         damage = characters[name].physical_damage
-        armour = characters[enemy_name].armour
+        armor = characters[enemy_name].armor
         health = characters[enemy_name].health
         context.bot.send_message(chat_id=chat_id,
                                  text=f"{name} атакует {enemy_name} и наносит {damage} урона!\n"
-                                 f"У {enemy_name} осталось {armour} брони и {health} здоровья!")
+                                 f"У {enemy_name} осталось {armor} брони и {health} здоровья!")
         characters[enemy_name].get_damage(damage)
         if characters[enemy_name].health <= 0:
             context.bot.send_message(chat_id=chat_id,
