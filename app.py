@@ -8,7 +8,8 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import CommandHandler
 from telegram.ext import InlineQueryHandler
 from telegram.ext import Updater
-
+from weapons import weapons
+from armors import armors
 """
  ____
 |    |
@@ -17,7 +18,7 @@ from telegram.ext import Updater
 characters = {}
 en_does_not_exist = "{} does not exist!"
 ru_does_not_exist = "{} не существует."
-HELP = """Привет, {}!
+HELP = f"""Привет, {}!
 Краткое описание существующих комманд:
 /start - начать диалог с ботом
 /help - получить список комманд
@@ -32,7 +33,8 @@ constitution=5,
 intelligence=5,
 wisdom=5,
 charisma=5
-
+{weapons}
+{armors}
 """
 
 def help(update, context):
@@ -110,7 +112,7 @@ def level_up(update, context):
         context.bot.send_message(chat_id=chat_id,
                                  text=ru_does_not_exist.format(name))
 
-
+#@TODO: Make it work
 def build_menu(buttons,
                n_cols,
                header_buttons=None,

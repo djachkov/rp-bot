@@ -64,7 +64,7 @@ class Character:
         if self.protection > 0:
             if damage > self.protection:
                 damage = damage - self.protection
-                self.armor = 0
+                self.protection = 0
                 self.health = self.health - damage
             else:
                 self.protection = self.protection - damage
