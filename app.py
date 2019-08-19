@@ -96,9 +96,8 @@ def equip(update, context):
     chat_id = update.message.chat_id
     name = update.message.from_user.username
     user_message = update.message.text.split(' ')
-    weapon = user_message[1]
+    weapon = ''.join(user_message[1:]).lower()
     char = characters[name]
-
     context.bot.send_message(chat_id=chat_id,
                              text=char.equip(weapon))
 def improve(update, context):

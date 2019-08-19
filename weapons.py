@@ -1,8 +1,8 @@
 weapons = {
-    'Stick': 1,
-    'Wooden sword': 3,
-    'Tomato': 0.1,
-    'Sword': 7,
-    'Swordfish': 3,
-    'Legendary sword of the Tsar': 15
+    'stick': 1,
+    'wooden sword': 3,
+    'tomato': 0.1,
+    'sword': 7,
+    'swordfish': 3,
+    'legendary sword of the tsar': 15
 }
