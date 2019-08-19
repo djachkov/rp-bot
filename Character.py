@@ -22,7 +22,14 @@ class Character:
         self.physical_damage = self.abilities['strength']
         self.skill_points = 6
         self.alive = True
-    def equip_weapon(self, weapon):
+    def equip(self, item):
+        if item in weapons:
+            return self._equip_weapon(item)
+        elif item in armors:
+            return self._equip_armor(item)
+        else:
+            return "Я не могу использовать это"
+    def _equip_weapon(self, weapon):
         attack_power = weapons[weapon]
         if not self.weapon:
             self.physical_damage += attack_power
@@ -33,7 +40,7 @@ class Character:
             self.physical_damage = self.abilities['strength'] + attack_power
             self.weapon = weapon
             return f'{self.name} drop {dropped} and equip {weapon}.'
-    def equip_armor(self, armor):
+    def _equip_armor(self, armor):
         protection = armors[armor]
         self.max_protection += protection
         self.protection = self.max_protection
