@@ -26,6 +26,8 @@ HELP = """Привет, {}!
 /attack <username> атаковать персонажа
 /levelup - повысить свой уровень
 /improve <ability> - потратить очко навыков на характеристики
+/equip <item> - экипировать предмет из списка
+/monitor - дебаг команда для отображения всех характеристик игрока
 Список характеристик (с начальным значением):
 strength=5,
 dexterity=5,
@@ -34,14 +36,17 @@ intelligence=5,
 wisdom=5,
 charisma=5
 
+
+Список доступных предметов:
+    Броня:
     'Wooden shield': 10,
     'Shield': 15,
     'Broken helmet': 5,
     'Iron helmet': 10,
     'Iron shield': 20,
     'Chain-mail': 20,
-    
-        'Stick': 1,
+    Оружие:
+    'Stick': 1,
     'Wooden sword': 3,
     'Tomato': 0.1,
     'Sword': 7,

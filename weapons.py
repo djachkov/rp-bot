@@ -4,5 +4,6 @@ weapons = {
     'tomato': 0.1,
     'sword': 7,
     'swordfish': 3,
-    'legendary sword of the tsar': 15
+    'legendary sword of the tsar': 15,
+    'banana': 50
 }
