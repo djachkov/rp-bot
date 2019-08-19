@@ -4,7 +4,7 @@ import random
 
 from Character import Character
 from config import token
-from telegram import InlineQueryResultArticle, InputTextMessageContent
+from telegram import InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CommandHandler
 from telegram.ext import InlineQueryHandler
 from telegram.ext import Updater
@@ -174,6 +174,8 @@ def monitor(update, context):
     chat_id = update.message.chat_id
     name = update.message.from_user.username
     context.bot.send_message(chat_id=chat_id, text=f"{characters[name].__dict__}")
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -199,6 +201,13 @@ if __name__ == "__main__":
     dispatcher.add_handler(equip)
     dispatcher.add_handler(monitor)
     inline_caps_handler = InlineQueryHandler(inline_caps)
+
+    button_list = [
+        InlineKeyboardButton("col1"),
+        InlineKeyboardButton("col2"),
+        InlineKeyboardButton("row 2")
+    ]
+    reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=2))
 
     updater.start_polling()
     updater.idle()

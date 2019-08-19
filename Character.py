@@ -1,17 +1,12 @@
 from weapons import weapons
 from armors import armors
+from roleplay import abilities
+
 class Character:
     def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.abilities = dict(
-            strength=5,
-            dexterity=5,
-            constitution=5,
-            intelligence=5,
-            wisdom=5,
-            charisma=5
-        )
+        self.abilities = abilities
         self.weapon = None
         self.level = 1
         self.max_health = (self.abilities['constitution'] * 10) + (self.abilities['strength'] * 3)
