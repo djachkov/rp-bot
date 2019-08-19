@@ -91,10 +91,8 @@ def improve(update, context):
     ability = update.message.text[9::]
     try:
         char = characters[name]
-        char.improve_ability(ability)
-        skill_points = char.skill_points
         context.bot.send_message(chat_id=chat_id,
-                                 text=f"{name} повысил свою {ability}\nYou have {skill_points} left")
+                                 text=f"{name} повысил свою {char.improve_ability(ability)}")
     except KeyError:
         context.bot.send_message(chat_id=chat_id,
                                  text=ru_does_not_exist.format(name))

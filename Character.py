@@ -55,10 +55,8 @@ class Character:
         if self.skill_points > 0:
             self.abilities[ability] += 1
             self.skill_points -= 1
-            if ability is 'strength':
-                self.physical_damage = self.abilities[ability]
-                if self.weapon:
-                    self.physical_damage += weapons[self.weapon]
+            if ability == 'strength':
+                self.physical_damage += 1
             return f"{self.abilities[ability]} increased."
         else:
             return "You cannot improve your abilities, {}.".format(self.name)
