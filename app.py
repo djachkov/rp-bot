@@ -33,9 +33,21 @@ constitution=5,
 intelligence=5,
 wisdom=5,
 charisma=5
-{weapons}
-{armors}
-""" + f"{armors}" + f"{weapons}"
+
+    'Wooden shield': 10,
+    'Shield': 15,
+    'Broken helmet': 5,
+    'Iron helmet': 10,
+    'Iron shield': 20,
+    'Chain-mail': 20,
+    
+        'Stick': 1,
+    'Wooden sword': 3,
+    'Tomato': 0.1,
+    'Sword': 7,
+    'Swordfish': 3,
+    'Legendary sword of the Tsar': 15
+"""
 
 def help(update, context):
     context.bot.send_message(chat_id=update.message.chat_id, text=HELP.format(update.message.from_user.username))
