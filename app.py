@@ -39,7 +39,7 @@ def help(update, context):
     context.bot.send_message(chat_id=update.message.chat_id, text=HELP.format(update.message.from_user.username))
 
 def start(update, context):
-    context.bot.send_message(chat_id=update.message.chat_id, text=START_MESSAGE)
+    # context.bot.send_message(chat_id=update.message.chat_id, text=START_MESSAGE)
     chat_id = update.message.chat_id
     user_id = update.message.from_user.id
     character_id = '/'.join([str(chat_id), str(user_id)])
