@@ -61,13 +61,13 @@ class Character:
         else:
             return "You cannot improve your abilities, {}.".format(self.name)
     def get_damage(self, damage):
-        if self.armor > 0:
-            if damage > self.armor:
-                damage = damage - self.armor
+        if self.protection > 0:
+            if damage > self.protection:
+                damage = damage - self.protection
                 self.armor = 0
                 self.health = self.health - damage
             else:
-                self.armor = self.armor - damage
+                self.protection = self.protection - damage
         else:
             self.health = self.health - damage
         if self.health <= 0:
