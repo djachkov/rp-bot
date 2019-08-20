@@ -7,3 +7,5 @@ weapons = {
     'legendary sword of the tsar': 15,
     'banana': 50
 }
+
+
