@@ -209,5 +209,7 @@ if __name__ == "__main__":
     ]
     reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=2))
 
-    updater.start_polling()
-    updater.idle()
+    updater.start_webhook(listen='127.0.0.1', port=5000, url_path=token)
+    updater.bot.set_webhook(webhook_url=f'https://roleplay-bot.tk/{token}',
+                        certificate=open('/etc/letsencrypt/live/www.roleplay-bot.tk/fullchain.pem', 'rb'))
+    # updater.idle()
