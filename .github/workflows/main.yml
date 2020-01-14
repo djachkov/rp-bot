@@ -1,0 +1,22 @@
+name: CI
+
+on: 
+  push:
+    branches:
+      - master
+      - reborn
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy over ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AWS_EC2_HOST }}
+        username: ${{ secrets.AWS_EC2_USERNAME }}
+        key: ${{ secrets.AWS_EC2_KEY }}
+        port: 22
+        script: |
+          cd game
+          git pull
+          docker-compose up -d --build
