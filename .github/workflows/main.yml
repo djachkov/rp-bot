@@ -15,7 +15,6 @@ jobs:
           host: ${{ secrets.AWS_EC2_HOST }}
           username: ${{ secrets.AWS_EC2_USERNAME }}
           key: ${{ secrets.AWS_EC2_KEY }}
-          passphrase: ${{ secrets.AWS_EC2_PASSPHRASE }}
           port: 22
           script: |
             cd game
