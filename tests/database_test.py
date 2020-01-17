@@ -1,8 +1,13 @@
 import pytest
+
 from app.utils.database import Database
+
 
 def pytest_namespace():
     return {"_id": None}
+
+
+@pytest.mark.incremental
 class TestDatabase:
     db = Database()
     test_doc = {
@@ -10,6 +15,8 @@ class TestDatabase:
         "text": "Sample text",
     }
 
+    def test_connection(self):
+        assert self.db.healthcheck() is True
 
     def test_insert(self):
         pytest._id = self.db.insert(self.test_doc)
