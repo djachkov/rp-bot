@@ -1,11 +1,17 @@
-from pymongo import MongoClient
 from datetime import datetime
-from bson.objectid import ObjectId
 from os import environ
+
+from bson.objectid import ObjectId
+from pymongo import MongoClient
 
 
 class Database:
-    client = MongoClient(environ.get("MONGO_HOSTNAME") or "localhost", 27017)
+    client = MongoClient(environ.get("MONGO_HOSTNAME"),
+                         username=environ.get("MONGO_USERNAME"),
+                         password=environ.get("MONGO_PASSWORD"),
+                         authSource='admin',
+                         port=27017)
+
     db = client[environ.get("MONGO_DB") or "testtest"]
     collection = db[environ.get("MONGO_COLLECTION") or "test"]
 
